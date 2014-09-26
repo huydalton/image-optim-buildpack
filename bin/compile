@@ -19,13 +19,13 @@ cd $ROOT_DIR/${VENDOR_DIR}
 mkdir -p ${BUILD_DIR}/${VENDOR_DIR}
 
 cp -vr ./image-optim ${BUILD_DIR}/${VENDOR_DIR} | indent
-export PATH="$PATH:$HOME/vendor/image-optim"
+export PATH="$PATH:${BUILD_DIR}/${VENDOR_DIR}/image-optim"
 
 cd $WORKING_DIR
 
 echo "-----> Adding image-optim binaries symlink to make them available in next buildpacks"
 
-cd /tmp/codon/vendor/bin
+cd /usr/bin
 
 ln -s ${BUILD_DIR}/${VENDOR_DIR}/image-optim/advpng advpng
 ln -s ${BUILD_DIR}/${VENDOR_DIR}/image-optim/gifsicle gifsicle
@@ -56,7 +56,7 @@ echo "-----> Image-Optim binaries version"
 
 advpng -V | head -1 | indent
 
-gifsicle --version | head -1 | indent 
+gifsicle --version | head -1 | indent
 
 jpegoptim -V | head -1 | indent
 
